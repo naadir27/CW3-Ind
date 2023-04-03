@@ -1,28 +1,58 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <header>
+      <h1>{{ sitename }}</h1>
+      <button @click="showCheckout">
+        {{ this.cart.length }}
+        Checkout
+      </button>
+    </header>
+    <main>
+        <lesson-list @addLesson="addToCart"></lesson-list>
+        <checkout :cart="cart"></checkout>
+    </main>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import lessonList from "./components/lessonList.vue";
+import checkout from "./components/Checkout.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    lessonList,
+    checkout,
+  },
+  data() {
+    return {
+      sitename: "LESSON SPACES",
+      cart: [],
+    };
+  },
+  methods: {
+    showCheckout() {
+
+    },
+    addToCart(lesson) {
+     console.log("addLesson event received by the root component.");
+      this.cart.push(lesson);
+    },
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.container {
+  display: grid;
+  grid-template-columns: auto auto;
+  margin: 20px;
+  padding: 15px;
+  padding-bottom: 30px;
+}
+
+h1{
+text-align: center;
+font-family: 'Helvatica';
 }
 </style>
