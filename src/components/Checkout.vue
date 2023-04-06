@@ -6,11 +6,11 @@
           <figure>
               <img width="200" height="200" v-bind:src="lesson.image" />
           </figure>
-        <b><i>
-          <p>Subject: {{ lesson.title }}</p>
-          <p>Location: {{ lesson.location }}</p>
-          <p>Price: {{ lesson.price }}</p>
-        </i></b>
+          <b><i>
+            <p>Subject:  {{ lesson.title }}    </p>
+            <p>Location: {{ lesson.location }} </p>
+            <p>Price:    {{ lesson.price }}    </p>
+          </i></b>
           <button @click="removeLessons(index)">Remove</button>
       </div>
     </div>
