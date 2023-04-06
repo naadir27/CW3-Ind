@@ -5,7 +5,7 @@
       <button @click="toggleCheckout">{{ this.cart.length }} <span class="fa-solid fa-bag-shopping"></span> {{ showCheckout ? 'Back To Lessons' : 'Checkout' }} </button>
     </header>
     <main>
-      <component v-bind:is="currentComponent" :lessons="lessons" @addLesson="addToCart" :cart="cart" @removeLessons="removeFromCart"></component>
+      <component v-bind:is="currentComponent" :lessons="lessons" @addLesson="addToCart" :cart="cart" @removeLessons="removeCart"></component>
     </main>
   </div>
 </template>
@@ -16,22 +16,14 @@ import checkout from './components/Checkout.vue'
 
 export default {
   name: 'App',
-  components: {
-    lessonList,
-    checkout
-  },
+  components: { lessonList, checkout },
   data() {
     return {
-      sitename: "SUBJECT SPACES",
-      cart: [],
-      showCheckout: false,
+      sitename: "LESSON STORE",
+      showCheckout: false,     
       lessons:[],
+      cart: [],
     }
-  },
-  computed: {
-    currentComponent: function () {
-      return this.showCheckout ? "checkout" : "lessonList";
-    },
   },
   methods: {
     toggleCheckout: function () {
@@ -44,7 +36,7 @@ export default {
         this.cart.push(lesson);
       }
     },
-    removeFromCart(index) {
+    removeCart(index) {
       const lesson = this.cart[index];
       this.cart.splice(index, 1);
       this.returnLesson(lesson);
@@ -56,12 +48,18 @@ export default {
       }
     }
   },
+  computed: {
+    currentComponent: function () {
+      return this.showCheckout ? "checkout" : "lessonList";
+    },
+  },
   created: function () {
-    // retrieving data from the server
+    // Retriving the data from the server. 
+    // That the server fetchs the data from MongoDB.
     const data = this;
     fetch("http://localhost:3000/collection/lessons").then(function (response) {
       response.json().then(function (json) {
-        // storing the response
+        // Storing The Data
         data.lessons = json;
       });
     });
