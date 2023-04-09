@@ -23,7 +23,7 @@ export default {
   name: "LessonList",
   props:["lessons"],
   data() {
-      return {}
+    return {};
   },
   methods: {
       addToCart(lesson){
