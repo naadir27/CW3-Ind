@@ -1,4 +1,5 @@
-# lessons
+# CartProject-Individual-CW3
+Link to the repository - https://github.com/naadir27/CW3-Ind.git
 
 ## Project setup
 ```
@@ -22,3 +23,4 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
